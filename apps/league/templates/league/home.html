@@ -1,0 +1,177 @@
+{% extends "league/base.html" %}
+{% load static %}
+
+{% block title %}JBL | HOME{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <img src="{% static 'league/images/images.jpeg' %}" alt="Baseball Stadium">
+
+    <div class="overlay">
+        <h1>JUNIOR BASEBALL LEAGUE</h1>
+        <p>Official management system for teams, players and baseball matches.</p>
+    </div>
+</section>
+
+<section class="public-intro container">
+    <div class="intro-card">
+        <h2>About the League</h2>
+        <p>
+            The Junior Baseball League is a sports management platform designed to organize
+            teams, players and matches in different age categories. This public section
+            provides general league information, registered teams, active players and match schedules/results.
+        </p>
+    </div>
+</section>
+
+<section class="container dashboard-section">
+    <div class="section-title">
+        <h2>League Dashboard</h2>
+        <p>General statistics of the current season</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ total_teams }}</h3>
+            <p>Total Teams</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ total_players }}</h3>
+            <p>Total Players</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ total_matches }}</h3>
+            <p>Total Matches</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ played_matches }}</h3>
+            <p>Played Matches</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ scheduled_matches }}</h3>
+            <p>Scheduled Matches</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ starter_teams }} / {{ junior_teams }} / {{ upper_teams }}</h3>
+            <p>Starter / Junior / Upper Teams</p>
+        </div>
+    </div>
+</section>
+
+<section id="public-teams" class="container public-table-section">
+    <div class="table-header">
+        <div>
+            <h1>Registered Teams</h1>
+            <p class="table-subtitle">Public information of all league teams</p>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>City</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.city }}</td>
+                    <td>{{ team.get_category_display }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="empty-state">No teams registered yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="public-players" class="container public-table-section">
+    <div class="table-header">
+        <div>
+            <h1>Registered Players</h1>
+            <p class="table-subtitle">Public player information without sensitive data</p>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>#</th>
+                    <th>Position</th>
+                    <th>Team</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.number }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.team.name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="empty-state">No players registered yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="public-matches" class="container public-table-section">
+    <div class="table-header">
+        <div>
+            <h1>League Matches</h1>
+            <p class="table-subtitle">Upcoming matches and played results</p>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Score</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for match in matches %}
+                <tr>
+                    <td>{{ match.home_team.name }}</td>
+                    <td>{{ match.away_team.name }}</td>
+                    <td>{{ match.match_date }}</td>
+                    <td>{{ match.location }}</td>
+                    <td>{{ match.home_score }} - {{ match.away_score }}</td>
+                    <td>{{ match.get_status_display }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="empty-state">No matches registered yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

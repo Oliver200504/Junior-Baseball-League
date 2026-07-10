@@ -1,0 +1,65 @@
+{% extends "league/base.html" %}
+
+{% block content %}
+<section class="container">
+
+    <div class="table-header">
+        <div>
+            <h1>Registered Teams</h1>
+            <p class="table-subtitle">
+                Administrators can manage all teams. Coaches can only edit their own team.
+            </p>
+        </div>
+
+        {% if user.is_superuser %}
+        <a href="{% url 'team_create' %}" class="btn-add">
+            Add New Team
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="table-wrapper">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Category</th>
+                    <th>Coach</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.city }}</td>
+                    <td>{{ team.get_category_display }}</td>
+                    <td>{{ team.coach_name }}</td>
+                    <td class="actions">
+
+                        {% if user.is_superuser %}
+                            <a href="{% url 'team_update' team.pk %}" class="edit-link">Edit</a>
+                            <a href="{% url 'team_delete' team.pk %}" class="delete-link">Delete</a>
+
+                        {% elif user.is_staff and team.owner == user %}
+                            <a href="{% url 'team_update' team.pk %}" class="edit-link">Edit</a>
+
+                        {% else %}
+                            <span class="no-action">View only</span>
+                        {% endif %}
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="empty-state">No teams registered yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+{% endblock %}

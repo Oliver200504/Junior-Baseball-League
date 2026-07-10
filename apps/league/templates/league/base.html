@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}JBL{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'league/css/style.css' %}" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">JBL</div>
+
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'team_list' %}">Teams</a></li>
+            <li><a href="{% url 'player_list' %}">Players</a></li>
+            <li><a href="{% url 'match_list' %}">Matches</a></li>
+
+            <li>
+              <form action="{% url 'logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout">Logout</button>
+              </form>
+            </li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      {% if messages %}
+        <section class="messages-wrapper">
+          {% for message in messages %}
+            <div class="alert-message
+              {% if message.tags == 'success' %}
+                alert-success
+              {% elif message.tags == 'error' %}
+                alert-error
+              {% elif message.tags == 'warning' %}
+                alert-warning
+              {% else %}
+                alert-info
+              {% endif %}
+            ">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </section>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>Desarrollado por Oliver Yair Tolentino Hernández – 2026</p>
+    </footer>
+
+    <script src="{% static 'league/js/main.js' %}"></script>
+  </body>
+</html>

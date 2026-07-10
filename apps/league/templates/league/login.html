@@ -1,0 +1,35 @@
+{% extends "league/base.html" %}
+
+{% block title %}Login | JBL{% endblock %}
+
+{% block content %}
+
+<section class="container form-section">
+    <div class="form-card login-card">
+
+        <h2>Staff Portal</h2>
+        <p class="form-subtitle">
+            Sign in with your username and password to manage league information.
+        </p>
+
+        <form method="post" class="main-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="form-actions">
+                <button type="submit" class="btn">
+                    Enter System
+                </button>
+            </div>
+        </form>
+
+        {% if form.errors %}
+            <p class="form-error">
+                Invalid username or password. Please try again.
+            </p>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

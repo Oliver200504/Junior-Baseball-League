@@ -1,0 +1,129 @@
+[
+{
+  "model": "league.team",
+  "pk": 4,
+  "fields": {
+    "name": "Mazonezzza",
+    "city": "Mexico",
+    "owner": 4,
+    "category": "UPPER"
+  }
+},
+{
+  "model": "league.team",
+  "pk": 5,
+  "fields": {
+    "name": "Katsup",
+    "city": "Atlanta",
+    "owner": 5,
+    "category": "UPPER"
+  }
+},
+{
+  "model": "league.player",
+  "pk": 5,
+  "fields": {
+    "name": "Olaf",
+    "number": 10,
+    "position": "PITCHER",
+    "birth_date": "2012-04-15",
+    "team": 4
+  }
+},
+{
+  "model": "league.player",
+  "pk": 6,
+  "fields": {
+    "name": "Mariana",
+    "number": 3,
+    "position": "LEFT FIELD",
+    "birth_date": "2011-02-08",
+    "team": 5
+  }
+},
+{
+  "model": "league.match",
+  "pk": 3,
+  "fields": {
+    "home_team": 4,
+    "away_team": 5,
+    "match_date": "2026-07-10",
+    "location": "Ciudad",
+    "home_score": 0,
+    "away_score": 0,
+    "status": "SCHEDULED"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$wGqiO3iRjnFlhxU2XkAKIB$kDj0RpoorYmd0FuWzdm2ZtKtadQzEeqmSmJeHC/38ZU=",
+    "last_login": "2026-07-06T21:48:26.998Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-05-29T00:17:28.905Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$pEtGctXdUQOpSyB3YEUQrO$cJxRe7lOO4n4Lc3nOcF5sSXMg3JGJ0klboEdtknHEGY=",
+    "last_login": "2026-07-09T19:45:16.638Z",
+    "is_superuser": true,
+    "username": "admin2",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@test.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-06T21:58:27.601Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$kV02dCZoyVTltsMvjaxaIr$FUcdEoBRjjyOsZvRWkseY3wntuvBV/N8NYmkfgO0xHw=",
+    "last_login": "2026-07-09T19:46:49.912Z",
+    "is_superuser": false,
+    "username": "coach",
+    "first_name": "",
+    "last_name": "",
+    "email": "coach@test.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-06T22:01:29.355Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$cmMupJAjfIpwZRvAQdEEtc$MFsOaEyT1pX6KXJEDDOs4zMVV+FEJ6h2H/i7EbBcDBA=",
+    "last_login": "2026-07-06T22:18:07.096Z",
+    "is_superuser": false,
+    "username": "coach atlanta",
+    "first_name": "",
+    "last_name": "",
+    "email": "coach@test.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-06T22:09:40.740Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

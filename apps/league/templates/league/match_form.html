@@ -1,0 +1,59 @@
+{% extends "league/base.html" %}
+
+{% block title %}
+  {% if object %}Edit Match | JBL{% else %}New Match | JBL{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="container form-section">
+
+    <div class="form-card">
+
+        <h2>
+            {% if object %}
+                Edit Match
+            {% else %}
+                Register Match
+            {% endif %}
+        </h2>
+
+        <p class="form-subtitle">
+            {% if object %}
+                Update the match information below.
+            {% else %}
+                Register a new league match and its status.
+            {% endif %}
+        </p>
+
+        <form method="post" class="main-form">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-error-box">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }}
+                    {{ field }}
+
+                    {% if field.errors %}
+                        <span class="field-error">{{ field.errors|striptags }}</span>
+                    {% endif %}
+                </p>
+            {% endfor %}
+
+            <div class="form-actions">
+                <button type="submit" class="btn">
+                    {% if object %}Update Match{% else %}Save Match{% endif %}
+                </button>
+                <a href="{% url 'match_list' %}" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+
+</section>
+{% endblock %}
