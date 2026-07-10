@@ -10,8 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # =========================
 SECRET_KEY = 'django-insecure-#v+k30aq*aw&8ygjl_sk09k$x6ask&@%4vi5lppp1-ynf!z0ge'
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ["Oliver150405.pythonanywhere.com",
+    "127.0.0.1",
+    "localhost",]
 
 # =========================
 # INSTALLED APPS
@@ -95,7 +97,7 @@ USE_TZ = True
 # =========================
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
